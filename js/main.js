@@ -2,7 +2,7 @@ import { data } from "../data/list.js";
 
 const ulDOM = document.querySelector('ul');
 
-const data = fetch('http://127.0.0.1:4414/data/users.json')
+const data = fetch('https://amik33.github.io/44-grupe-fetch/data/users.json')
 .then((response) => {
     return response.json();
 })
@@ -12,9 +12,9 @@ const data = fetch('http://127.0.0.1:4414/data/users.json')
     }
 });
 
-let HTML = '';
+// let HTML = '';
 
-for ( const item of data) {
-    HTML += `<li>${item.id}) ${item.text}</li>`; 
-}
- ulDOM.innerHTML = HTML;
+// for ( const item of data) {
+//     HTML += `<li>${item.id}) ${item.text}</li>`; 
+// }
+//  ulDOM.innerHTML = HTML;
