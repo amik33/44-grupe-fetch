@@ -1,25 +1,27 @@
 // import { data } from "../data/list.js";
 
-const ulDOM = document.querySelector('ul');
-let HTML = '';
-const data = fetch ('https://amik33.github.io/44-grupe-fetch/data/users.json')
-.then((response) => {
-    return response.json();
-})
-.then((data) => {
-    for (const user of data) {
-        HTML += `<ul class="service">
-        <il class="service-title">${user.name}</il>
-        <il>${user.age}</il>
-        <il class="service-description">${user.isMarried}</il>
-        </ul>`;
-        ulDOM.innerHTML = HTML;
-    }
-});
+import { renderUsersList } from "./users.js";
 
+const url = 'https://amik33.github.io/44-grupe-fetch';
+const sourceCSS = '/css/main.css';
+fetch(url + sourceCSS)
+    .then(res => res.text())
+    .then(css => {
+        const headDOM = document.querySelector('head');
+        if (headDOM) {
+            headDOM.insertAdjacentHTML('beforeend', `<style>${css}</style>`);
+        }
+    });
 
-// for ( const item of data) {
-//     HTML += `<li>${item.id}) ${item.text}</li>`;
-//      ulDOM.innerHTML = HTML;
-// }
+    const sourceUsers = '/data/users.json';
+    fetch(url + sourceUsers)
+        .then(res => res.json())
+        .then(renderUsersList)
+        .catch(console.error)
+        .finally(() => {
+            console.log('GRAND FINAL!!!');
+        });
 
+// const res = await fetch(url + sourceUsers);
+// const data = await res.json();
+// renderUsersList(data);
